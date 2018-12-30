@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("menu")
+@RequestMapping(value = "menu")
 public class MenuController {
     @Autowired
     MenuDao menuDao;
@@ -66,7 +66,7 @@ public class MenuController {
         Menu menu = menuDao.findOne(menuId);
 
         AddMenuItemForm form = new AddMenuItemForm(cheeseDao.findAll(), menu);
-        model.addAttribute("title", "Add item to menu"
+        model.addAttribute("title", "Add item to menu: "
                 + menu.getName());
         model.addAttribute("form", form);
 
@@ -89,7 +89,7 @@ public class MenuController {
         menuDao.save(theMenu);
 
 
-        return "redirect:/menu/vue" + theMenu.getId();
+        return "redirect:/menu/view/" + theMenu.getId();
     }
 
 }
